@@ -113,6 +113,9 @@ class TrajectoryStatistic:
                 )
             else:
                 self._layer_labels = np.array([*map(str, range(self.stats.shape[0]))])
+        
+        if self.stats.dtype == np.float16:
+            self.stats = self.stats.astype(np.float32)
 
     def clip(self, min: float, max: float) -> "TrajectoryStatistic":
         """Return a new TrajectoryStatistic with the given min and max.
